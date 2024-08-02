@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Livro Listagem</title>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <ui:include src="menus.xhtml"/>
+
+        <p:messages id="mensagem" closable="true"/>
+
+        <p:panel header="Listagem dos Livros">
+
+            <p:dataTable value="#{livroListagemControlador.livros}" var="Linha">
+
+                <p:column headerText="Titulo">
+                    <h:outputText value="#{Linha.titulo}" />
+                </p:column>
+
+                <p:column headerText="Data de publicação">
+                    <h:outputText value="#{Linha.anoDePublicacao}">
+                        <f:convertDateTime locale="pt" pattern="dd/MM/yyy" type="localDate"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Autor">
+                    #{Linha.autor.nome_autor}
+                </p:column>
+
+                <p:column headerText="Editora">
+                    #{Linha.editora.nomeFantasma}
+                </p:column>
+
+                <p:column headerText="Opções">
+
+                    <p:commandButton value="Excluir" actionListener="#{livroListagemControlador.excluir(Linha)}"/>
+                    <p:commandButton value="Editar" actionListener="#{livroListagemControlador.editar(Linha)}" style="left: 10px"/>
+
+                </p:column>
+
+
+
+            </p:dataTable>
+
+        </p:panel>
+    </h:form>
+</h:body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

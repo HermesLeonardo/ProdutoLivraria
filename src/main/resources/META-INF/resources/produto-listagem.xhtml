@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Produto Listagem</title>
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <ui:include src="menus.xhtml"/>
+
+        <p:messages id="mensagem" closable="true"/>
+
+        <p:panel header="Listagem dos Produtos">
+
+            <p:dataTable value="#{produtoListagemControlador.produtos}" var="Linha">
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{Linha.nome}" />
+                </p:column>
+
+                <p:column headerText="Preço">
+                    <h:outputText value="#{Linha.preco}">
+                        <f:convertNumber type="pt" pattern="0.00"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Validade">
+                    <h:outputText value="#{Linha.validade}">
+                        <f:convertDateTime locale="pt" pattern="dd/MM/yyyy" type="localDate"/>
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Categoria">
+
+                    #{Linha.categoria.nome}
+
+                </p:column>
+
+                <p:column headerText="Opções">
+
+                    <p:commandButton value="Excluir" actionListener="#{produtoListagemControlador.excluir(Linha)}"/>
+
+                </p:column>
+
+
+
+            </p:dataTable>
+
+        </p:panel>
+    </h:form>
+</h:body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

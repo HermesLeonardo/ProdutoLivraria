@@ -1,0 +1,93 @@
+
+
+
+
+.absolute-codigolivro{
+    font-size: 16px !important;
+    position: absolute;
+    top: 150px;
+    left: 600px;
+}
+.absolute-codigolivroinpu{
+    position: absolute;
+    top: 145px;
+    left: 790px;
+}
+
+.absolute-titulolivro{
+    font-size: 16px !important;
+    position: absolute;
+    top: 195px;
+    left: 600px;
+}
+.absolute-titulolivroinpu{
+    position: absolute;
+    top: 188px;
+    left: 790px;
+}
+
+.absolute-autorlivro{
+    font-size: 16px !important;
+    position: absolute;
+    top: 240px;
+    left: 600px;
+}
+.absolute-autorlivroinpu{
+    position: absolute;
+    bottom: 131px;
+    left: 570px;
+}
+
+.absolute-editoralivro{
+    font-size: 16px !important;
+    position: absolute;
+    top: 285px;
+    left: 600px;
+}
+.absolute-editoralivroinpu{
+    position: absolute;
+    bottom: 131px;
+    left: 570px;
+}
+
+.absolute-anolivro{
+    font-size: 16px !important;
+    position: absolute;
+    top: 325px;
+    left: 600px;
+}
+.absolute-anolivroinpu{
+    position: absolute;
+    top: 320px;
+    left: 790px;
+}
+
+.absolute-leganda1{
+
+    font-size: 20px; !important;
+    position: absolute;
+    top: 85px;
+    left: 790px;
+
+    font-weight: bold;
+}
+.absolute-leganda2{
+
+    font-size: 15px; !important;
+    position: absolute;
+    top: 85px;
+    left: 220px;
+
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+

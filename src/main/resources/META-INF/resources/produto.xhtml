@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Projeto</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js" />
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <ui:include src="menus.xhtml"/>
+
+        <p:panel header="Produto">
+            <p:messages id="mensagem" closable="true" />
+
+            <h:panelGrid id="painelCampos" columns="2">
+
+                <p:outputLabel value="Código" />
+                <p:inputText value="#{produtoControlador.produto.codigo}"
+                             readonly="true">
+                </p:inputText>
+
+                <p:outputLabel value="Nome"/>
+                <p:inputText size="50" maxlength="100"
+                             value="#{produtoControlador.produto.nome}"
+                             required="true" requiredMessage="O campo nome é obrigatório" />
+
+                <p:outputLabel value="Quantidade"/>
+                <p:inputText size="10" maxlength="3"
+                             value="#{produtoControlador.produto.quantidade}"
+                             required="true" requiredMessage="O campo quantidade é obrigatório"
+                             converterMessage="O campo quantidade aceita somente números inteiros"
+                             validatorMessage="O campo quantidade aceita somente valores maiores ou igual a zero">
+                    <f:validateLongRange minimum="0" />
+                </p:inputText>
+
+                <p:outputLabel value="Preço"/>
+                <p:inputText size="10" maxlength="7"
+                             value="#{produtoControlador.produto.preco}"
+                             required="true" requiredMessage="O campo preço é obrigatório"
+                             converterMessage="O campo preço aceita somente números reais"
+                             validatorMessage="O campo preço aceita somente valores maiores ou igual a R$ 0,10">
+                    <f:validateDoubleRange minimum="0.10" />
+                    <f:convertNumber pattern="0.00" locale="pt" />
+                </p:inputText>
+
+                <p:outputLabel value="Data de Validade"/>
+                <p:calendar readonlyInput="true" pattern="dd/MM/yyyy"
+                            value="#{produtoControlador.produto.validade}"
+                            required="true" requiredMessage="O campo data de validade é obrigatório"
+                            locale="pt" />
+
+                <p:outputLabel value="Categoria"/>
+                <p:selectOneMenu required="true" requiredMessage="O campo categoria é obrigatorio"
+                                 value="#{produtoControlador.produto.categoria}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione uma Categoria"/>
+                    <f:selectItems value="#{produtoControlador.categorias}"
+                                   var="linha" itemValue="#{linha}" itemLabel="#{linha.nome}"/>
+                </p:selectOneMenu>
+
+            </h:panelGrid>
+
+
+
+            <h:panelGrid columns="2">
+                <p:commandButton value="Salvar"
+                                 actionListener="#{produtoControlador.salvar()}"
+                                 update="mensagem painelCampos" />
+
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
+
+</html>

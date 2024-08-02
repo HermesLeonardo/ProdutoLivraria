@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+<h:head>
+    <title>Projeto</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js" />
+</h:head>
+
+
+<h:body>
+
+    <h:form>
+
+        <ui:include src="menus.xhtml"/>
+
+        <p:panel header="Livros">
+            <p:messages id="Mensagem" closable="true"/>
+
+            <h:panelGrid id="PainelCampos" columns="2">
+
+                <p:outputLabel value="Nome do Livro"/>
+                <p:inputText size="50" maxlength="100"
+                              value="#{livroControlador.livro.titulo}"
+                               required="true" requiredMessage="O campo 'Nome do Livro é obrigatorio" />
+
+                <p:outputLabel value="Data de publicação"/>
+                <p:calendar readonlyInput="true" pattern="dd/MM/yyyy"
+                            value="#{livroControlador.livro.anoDePublicacao}"
+                            required="true" requiredMessage="O campo data de Chegada é obrigatório"
+                            locale="pt" />
+
+                <p:outputLabel value="Autor"/>
+                <p:selectOneMenu required="true" requiredMessage="O campo Autor é obrigatorio" style="width: 198px"
+                                 value="#{livroControlador.livro.autor}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione um Autor"/>
+                    <f:selectItems value="#{livroControlador.autors}"
+                                   var="autor" itemValue="#{autor}" itemLabel="#{autor.nome_autor}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Editora"/>
+                <p:selectOneMenu required="true" requiredMessage="O campo Editora é obrigatorio" style="width: 198px"
+                                 value="#{livroControlador.livro.editora}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione uma Editora"/>
+                    <f:selectItems value="#{livroControlador.editoras}"
+                                   var="editora" itemValue="#{editora}" itemLabel="#{editora.nomeFantasma}"/>
+                </p:selectOneMenu>
+
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+                <p:commandButton value="Salvar"
+                                 actionListener="#{livroControlador.salvar()}"
+                                 update="Mensagem PainelCampos" />
+            </h:panelGrid>
+
+
+        </p:panel>
+
+    </h:form>
+
+</h:body>
+
+
+
+</html>

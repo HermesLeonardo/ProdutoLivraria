@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Projeto</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputStylesheet name="CSS/Style-livro-edicao.css"/>
+
+</h:head>
+
+<h:body>
+    <h:form>
+
+        <ui:include src="menus.xhtml"/>
+
+        <p:panel header="Edição do Livro" closable="true">
+            <p:messages id="mensagem" closable="true"/>
+
+
+
+            <h:panelGrid id="painelCampos" columns="2">
+
+                <p:outputLabel value="Código do livro" />
+                <p:inputText value="#{livroEdicaoControlador.livro.codigo}"
+                             readonly="true">
+                </p:inputText>
+
+                <p:outputLabel value="Titulo do Livro"/>
+                <p:inputText size="30"
+                             value="#{livroEdicaoControlador.livro.titulo}"
+                             readonly="true"/>
+
+                <p:outputLabel value="Autor" />
+                <p:inputText size="30" value="#{livroEdicaoControlador.livro.autor.nome_autor}"
+                             readonly="true"/>
+
+                <p:outputLabel value="Editora"/>
+                <p:inputText size="30" value="#{livroEdicaoControlador.livro.editora.nomeFantasma}"
+                             readonly="true"/>
+
+                <p:outputLabel value="Ano de publicação do livro"/>
+                <p:calendar readonlyInput="true" pattern="dd/MM/yyyy"
+                            value="#{livroEdicaoControlador.livro.anoDePublicacao}"
+                            locale="pt" readonly="true"/>
+
+
+
+
+
+
+
+
+                <p:outputLabel value="Código do livro"  styleClass="absolute-codigolivro"/>
+                <p:inputText value="#{livroEdicaoControlador.livro.codigo}"
+                             readonly="true" styleClass="absolute-codigolivroinpu">
+                </p:inputText>
+
+                <p:outputLabel value="Titulo do Livro" styleClass="absolute-titulolivro"/>
+                <p:inputText size="30" style="width: 280px;"
+                             value="#{livroEdicaoControlador.livro.titulo}"
+                             required="true" requiredMessage="O campo Titulo é obrigatorio para a edição" styleClass="absolute-titulolivroinpu"/>
+
+                <p:outputLabel value="Autor" styleClass="absolute-autorlivro"/>
+                <p:selectOneMenu required="true" requiredMessage="O campo Autor é obrigatorio para a edição" style="width: 280px" styleClass="absolute-autorlivroinpu"
+                                 value="#{livroEdicaoControlador.livro.autor}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione um Autor"/>
+                    <f:selectItems value="#{livroControlador.autors}"
+                                   var="autor" itemValue="#{autor}" itemLabel="#{autor.nome_autor}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Editora" styleClass="absolute-editoralivro"/>
+                <p:selectOneMenu required="true" requiredMessage="O campo Editora é obrigatorio para a edição" style="width: 280px" styleClass="absolute-editoralivroinpu"
+                                 value="#{livroEdicaoControlador.livro.editora}"
+                                 converter="omnifaces.SelectItemsConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Selecione uma Editora"/>
+                    <f:selectItems value="#{livroControlador.editoras}"
+                                   var="editora" itemValue="#{editora}" itemLabel="#{editora.nomeFantasma}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Ano de publicação do livro" styleClass="absolute-anolivro"/>
+                <p:calendar readonlyInput="true" pattern="dd/MM/yyyy"
+                            value="#{livroEdicaoControlador.livro.anoDePublicacao}"
+                            locale="pt" required="true" requiredMessage="O campo Ano de publicação é obrigatorio para a edição" styleClass="absolute-anolivroinpu"/>
+
+
+
+
+                <p:outputLabel value=" Mudar para " styleClass="absolute-leganda1"/>
+                <p:outputLabel value="Antes" styleClass="absolute-leganda2"/>
+
+            </h:panelGrid>
+
+
+            <h:panelGrid columns="2">
+                <p:commandButton value="Editar"
+                                 actionListener="#{livroEdicaoControlador.editar()}"
+                                 update="mensagem"/>
+
+                <p:commandButton value="Cancelar"
+                                 actionListener="#{livroEdicaoControlador.cancelar()}"
+                                 update="mensagem"/>
+            </h:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
+
+</html>
